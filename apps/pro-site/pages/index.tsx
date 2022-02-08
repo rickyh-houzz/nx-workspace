@@ -1,4 +1,5 @@
 import styles from './index.module.css';
+import { Blocks } from '@nx-workspace/blocks';
 
 export function Index() {
   /*
@@ -16,6 +17,7 @@ export function Index() {
               Welcome pro-site 👋
             </h1>
           </div>
+          <Blocks />
 
           <div id="hero" className="rounded">
             <div className="text-container">
