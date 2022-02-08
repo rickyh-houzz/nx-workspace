@@ -1,0 +1,23 @@
+{
+  "root": "libs/blocks",
+  "sourceRoot": "libs/blocks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/blocks/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/blocks"],
+      "options": {
+        "jestConfig": "libs/blocks/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,4 +1,9 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "blocks": "libs/blocks",
+    "editor": "apps/editor",
+    "pro-site": "apps/pro-site",
+    "services": "apps/services"
+  }
 }
