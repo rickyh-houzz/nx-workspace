@@ -7,6 +7,7 @@ export function App() {
       <NxWelcome title="editor" />
       <Blocks />
       <div />
+      <h1>123</h1>
     </>
   );
 }
