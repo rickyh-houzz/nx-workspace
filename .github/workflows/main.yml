@@ -25,6 +25,8 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    outputs:
+      affected_apps: ${{ steps.affected_apps.outputs.AFFECTED_APPS }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -44,4 +46,5 @@ jobs:
       - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
   editor:
     uses: ./.github/workflows/editor.yml
-    if: contains(jobs.pr.steps.affected_apps.outputs.AFFECTED_APPS, 'editor')
+    needs: pr
+    if: contains(needs.pr.outputs.affected_apps, 'editor')
