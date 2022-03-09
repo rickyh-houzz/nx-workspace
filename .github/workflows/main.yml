@@ -48,3 +48,7 @@ jobs:
     uses: ./.github/workflows/editor.yml
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'editor')
+  prosite:
+    uses: ./.github/workflows/prosite.yml
+    needs: pr
+    if: contains(needs.pr.outputs.affected_apps, 'prosite')
