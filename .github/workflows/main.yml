@@ -36,6 +36,8 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
-      - run: echo "AFFECTED_APPS=${{ ./node_modules/.bin/nx affected:apps --plain }}" >> $GITHUB_ENV
-      - run: echo "${{ env.AFFECTED_APPS }}"
+      - name: Get affected apps
+        run: echo "::set-output name=AFFECTED_APPS::npx nx affected:apps --plain"
+        id: affected_apps
+      - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
               
