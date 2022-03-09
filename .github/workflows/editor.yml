@@ -1,0 +1,10 @@
+name: 'editor'
+
+on: [workflow_call]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: initial labelling
+        run: echo "Editor workflow"
