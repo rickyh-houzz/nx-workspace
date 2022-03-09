@@ -37,7 +37,9 @@ jobs:
           node-version: '14'
       - run: npm install
       - name: Get affected apps
-        run: echo "::set-output name=AFFECTED_APPS::npx nx affected:apps --plain"
+        run: |
+          AFFECTED=$(npx nx affected:apps --plain)
+          echo "::set-output name=AFFECTED_APPS::$AFFECTED)"
         id: affected_apps
       - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
               
