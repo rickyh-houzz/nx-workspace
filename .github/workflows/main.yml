@@ -51,4 +51,4 @@ jobs:
   prosite:
     uses: ./.github/workflows/prosite.yml
     needs: pr
-    if: contains(needs.pr.outputs.affected_apps, 'prosite')
+    if: contains(needs.pr.outputs.affected_apps, 'pro-site')
