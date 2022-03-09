@@ -39,7 +39,9 @@ jobs:
       - name: Get affected apps
         run: |
           AFFECTED=$(npx nx affected:apps --plain)
-          echo "::set-output name=AFFECTED_APPS::$AFFECTED)"
+          echo "::set-output name=AFFECTED_APPS::$AFFECTED"
         id: affected_apps
       - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
-              
+  editor:
+    uses: ./.github/workflows/editor.yml
+    if: contains(jobs.pr.steps.affected_apps.outputs.AFFECTED_APPS, 'editor')
