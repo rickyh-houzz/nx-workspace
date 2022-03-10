@@ -10,22 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
     outputs:
-      affected_apps: ${{ steps.affected_apps.outputs.AFFECTED_APPS }}
+      affected_apps: ${{ steps.get_affected_apps.outputs.affected_apps }}
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-      - run: npm install @nrwl/cli
-      - name: Get affected apps and store it to steps.affected_apps.outputs.AFFECTED_APPS
-        run: |
-          AFFECTED=$(npx nx affected:apps --plain)
-          echo "::set-output name=AFFECTED_APPS::$AFFECTED"
-        id: affected_apps
+      - name: Get affected apps
+        uses: ./.github/actions/affected
+        id: get_affected_apps
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
@@ -39,11 +31,27 @@ jobs:
       - name: Get affected apps
         uses: ./.github/actions/affected
         id: get_affected_apps
-  editor:
+  editor-merge-main:
     uses: ./.github/workflows/editor.yml
+    with:
+      event: merge-main
+    needs: merge-main
+    if: contains(needs.merge-main.outputs.affected_apps, 'editor')
+  editor-pr:
+    uses: ./.github/workflows/editor.yml
+    with:
+      event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'editor')
-  prosite:
+  prosite-merge-main:
     uses: ./.github/workflows/prosite.yml
+    with:
+      event: merge-main
+    needs: merge-main
+    if: contains(needs.merge-main.outputs.affected_apps, 'pro-site')
+  prosite-pr:
+    uses: ./.github/workflows/prosite.yml
+    with:
+      event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'pro-site')
