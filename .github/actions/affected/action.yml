@@ -22,3 +22,4 @@ runs:
       id: affected_apps
       shell: bash
     - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
+      shell: bash
