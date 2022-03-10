@@ -1,4 +1,4 @@
-name: CI
+name: main
 on:
   push:
     branches:
@@ -6,49 +6,52 @@ on:
   pull_request:
 
 jobs:
-  main:
+  merge-main:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'pull_request' }}
+    outputs:
+      affected_apps: ${{ steps.get_affected_apps.outputs.affected_apps }}
     steps:
       - uses: actions/checkout@v2
-        name: Checkout [main]
         with:
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-      - run: npm install
-      - run: npx nx affected:apps --plain
-      - run: npx nx affected:libs --plain
+      - name: Get affected apps
+        uses: ./.github/actions/affected
+        id: get_affected_apps
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     outputs:
-      affected_apps: ${{ steps.affected_apps.outputs.AFFECTED_APPS }}
+      affected_apps: ${{ steps.get_affected_apps.outputs.affected_apps }}
     steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-      - run: npm install
       - name: Get affected apps
-        run: |
-          AFFECTED=$(npx nx affected:apps --plain)
-          echo "::set-output name=AFFECTED_APPS::$AFFECTED"
-        id: affected_apps
-      - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
-  editor:
+        uses: ./.github/actions/affected
+        id: get_affected_apps
+  editor-merge-main:
     uses: ./.github/workflows/editor.yml
+    with:
+      event: merge-main
+    needs: merge-main
+    if: contains(needs.merge-main.outputs.affected_apps, 'editor')
+  editor-pr:
+    uses: ./.github/workflows/editor.yml
+    with:
+      event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'editor')
-  prosite:
+  prosite-merge-main:
     uses: ./.github/workflows/prosite.yml
+    with:
+      event: merge-main
+    needs: merge-main
+    if: contains(needs.merge-main.outputs.affected_apps, 'pro-site')
+  prosite-pr:
+    uses: ./.github/workflows/prosite.yml
+    with:
+      event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'pro-site')

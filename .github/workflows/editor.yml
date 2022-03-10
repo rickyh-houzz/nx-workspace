@@ -1,10 +1,22 @@
 name: 'editor'
 
-on: [workflow_call]
+on:
+  workflow_call:
+    inputs:
+      event:
+        required: true
+        type: string
 
 jobs:
-  main:
+  merge-main:
+    if: ${{ inputs.event == 'merge-main' }}
     runs-on: ubuntu-latest
     steps:
-      - name: initial labelling
-        run: echo "Editor workflow"
+      - name: editor merge main
+        run: echo "editor merge main"
+  pr:
+    if: ${{ inputs.event == 'pr' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: editor pr
+        run: echo "editor pr"

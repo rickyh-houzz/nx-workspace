@@ -1,0 +1,25 @@
+name: 'Affected'
+description: 'Get affected apps by nx affected cli'
+outputs:
+  affected_apps:
+    description: "Affected apps"
+    value: ${{ steps.affected_apps.outputs.AFFECTED_APPS }}
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Install nx cli
+      run: npm install nx
+      shell: bash
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v2
+    - name: Get affected apps and store it to steps.affected_apps.outputs.AFFECTED_APPS
+      run: |
+        AFFECTED=$(npx nx affected:apps --plain)
+        echo "::set-output name=AFFECTED_APPS::$AFFECTED"
+      id: affected_apps
+      shell: bash
+    - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
+      shell: bash
