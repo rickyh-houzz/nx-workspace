@@ -1,7 +1,7 @@
 name: 'Affected'
 description: 'Get affected apps by nx affected cli'
 outputs:
-  affected-apps:
+  affected_apps:
     description: "Affected apps"
     value: ${{ steps.affected_apps.outputs.AFFECTED_APPS-id }}
 runs:

@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     outputs:
-      affected_apps: ${{ steps.get_affected_apps.outputs.AFFECTED_APPS }}
+      affected_apps: ${{ steps.get_affected_apps.outputs.affected_apps }}
     steps:
       - uses: actions/checkout@v2
         with:
