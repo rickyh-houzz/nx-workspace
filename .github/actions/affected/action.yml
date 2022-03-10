@@ -3,7 +3,7 @@ description: 'Get affected apps by nx affected cli'
 outputs:
   affected_apps:
     description: "Affected apps"
-    value: ${{ steps.affected_apps.outputs.AFFECTED_APPS-id }}
+    value: ${{ steps.affected_apps.outputs.AFFECTED_APPS }}
 runs:
   using: "composite"
   steps:
@@ -21,3 +21,4 @@ runs:
         echo "::set-output name=AFFECTED_APPS::$AFFECTED"
       id: affected_apps
       shell: bash
+    - run: echo "${{ steps.affected_apps.outputs.AFFECTED_APPS }}"
