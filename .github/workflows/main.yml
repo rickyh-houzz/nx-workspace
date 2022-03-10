@@ -37,7 +37,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - name: Get affected apps
-        uses: .github/actions/affected
+        uses: ./.github/actions/affected
         id: get_affected_apps
   editor:
     uses: ./.github/workflows/editor.yml

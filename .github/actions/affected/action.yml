@@ -12,6 +12,7 @@ runs:
         node-version: '14'
     - name: Install nx cli
       run: npm install @nrwl/cli
+      shell: bash
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
       uses: nrwl/nx-set-shas@v2
     - name: Get affected apps and store it to steps.affected_apps.outputs.AFFECTED_APPS
@@ -19,3 +20,4 @@ runs:
         AFFECTED=$(npx nx affected:apps --plain)
         echo "::set-output name=AFFECTED_APPS::$AFFECTED"
       id: affected_apps
+      shell: bash
