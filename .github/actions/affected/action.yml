@@ -11,7 +11,7 @@ runs:
       with:
         node-version: '14'
     - name: Install nx cli
-      run: npm install @nrwl/cli
+      run: npm install nx
       shell: bash
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
       uses: nrwl/nx-set-shas@v2
