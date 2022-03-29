@@ -1,0 +1,22 @@
+name: 'api-server'
+
+on:
+  workflow_call:
+    inputs:
+      event:
+        required: true
+        type: string
+
+jobs:
+  merge-main:
+    if: ${{ inputs.event == 'merge-main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: api-server merge main
+        run: echo "api-server merge main"
+  pr:
+    if: ${{ inputs.event == 'pr' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: api-server pr
+        run: echo "api-server pr"

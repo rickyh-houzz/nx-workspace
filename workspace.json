@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "api-server": "apps/api-server",
     "blocks": "libs/blocks",
     "editor": "apps/editor",
     "pro-site": "apps/pro-site",

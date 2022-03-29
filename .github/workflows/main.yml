@@ -43,6 +43,18 @@ jobs:
       event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'editor')
+  api-server-merge-main:
+    uses: ./.github/workflows/api-server.yml
+    with:
+      event: merge-main
+    needs: merge-main
+    if: contains(needs.merge-main.outputs.affected_apps, 'api-server')
+  api-server-pr:
+    uses: ./.github/workflows/api-server.yml
+    with:
+      event: pr
+    needs: pr
+    if: contains(needs.pr.outputs.affected_apps, 'api-server')
   prosite-merge-main:
     uses: ./.github/workflows/prosite.yml
     with:
