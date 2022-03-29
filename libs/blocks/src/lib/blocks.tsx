@@ -7,6 +7,7 @@ export function Blocks(props: BlocksProps) {
   return (
     <div>
       <h1>Welcome to Blocks!!!</h1>
+      <p>Welcome again</p>
       {utils}
     </div>
   );
