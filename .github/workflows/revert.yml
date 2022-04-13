@@ -1,7 +1,10 @@
 name: revert-k8s-image.yml
 on:
   workflow_dispatch:
-    
+    inputs:
+      run_id:
+        description: 'The run id of the deploy workflow(production-build-deploy.yml) you want to revert to'
+        required: true
 jobs:
   revert:
     runs-on: ubuntu-latest
@@ -10,7 +13,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: main.yml
-          workflow_conclusion: success
+          run_id: ${{ github.event.inputs.run_id }}
           name: TargetSHA
       - name: Configure target SHA
         run: |
