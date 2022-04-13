@@ -18,8 +18,8 @@ jobs:
         with:
           name: TargetSHA
       - name: Configure target SHA
-          run: |
-            cat target-sha.txt >> $GITHUB_ENV
+        run: |
+          cat target-sha.txt >> $GITHUB_ENV
       - name: Check Target SHA in Github env
-          run: |
-            echo "Target SHA is ${{ env.TARGET_SHA }}"
+        run: |
+          echo "Target SHA is ${{ env.TARGET_SHA }}"
