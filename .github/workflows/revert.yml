@@ -14,10 +14,6 @@ jobs:
         with:
           workflow: main.yml
           run_id: 2159768114
-      - name: Download the Target SHA from Build job
-        uses: actions/download-artifact@v2
-        with:
-          name: TargetSHA
       - name: Configure target SHA
         run: |
           cat target-sha.txt >> $GITHUB_ENV
