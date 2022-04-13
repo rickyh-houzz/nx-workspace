@@ -14,6 +14,7 @@ jobs:
         with:
           workflow: main.yml
           run_id: 2159768114
+          name: TargetSHA
       - name: Configure target SHA
         run: |
           cat target-sha.txt >> $GITHUB_ENV
