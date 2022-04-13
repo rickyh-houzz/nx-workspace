@@ -1,0 +1,25 @@
+name: revert-k8s-image.yml
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'The branch, tag or SHA to deploy to production. Defaults to latest master'
+        default: 'master'
+jobs:
+  revert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: main.yml
+      - name: Download the Target SHA from Build job
+        uses: actions/download-artifact@v2
+        with:
+          name: TargetSHA
+      - name: Configure target SHA
+          run: |
+            cat target-sha.txt >> $GITHUB_ENV
+      - name: Check Target SHA in Github env
+          run: |
+            echo "Target SHA is ${{ env.TARGET_SHA }}"
