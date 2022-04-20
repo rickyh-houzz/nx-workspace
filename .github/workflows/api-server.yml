@@ -26,10 +26,11 @@ jobs:
         run: yarn install
       - name: yarn build
         run: yarn build
-      - name: release
-        run: yarn semantic-release
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   pr:
     if: ${{ inputs.event == 'pr' }}
     runs-on: ubuntu-latest
