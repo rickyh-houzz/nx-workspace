@@ -20,8 +20,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+      - name: log
+        run: echo "token ${{ secrets.GH_TOKEN }}"
       - name: yarn install
-        run: yarn install & echo "${{ secrets.GH_TOKEN }}"
+        run: yarn install
       - name: yarn build
         run: yarn build
       - name: release
