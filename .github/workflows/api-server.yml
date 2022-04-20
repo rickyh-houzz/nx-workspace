@@ -6,7 +6,7 @@ on:
       event:
         required: true
         type: string
-      npmToken:
+      npm-token:
         required: true
         type: string
 
@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 14
       - name: Log sec
-        run: echo "Test ${{ inputs.npmToken }}"
+        run: echo "Test ${{ inputs.npm-token }}"
       - name: Checkout
         uses: actions/checkout@v3
       - name: yarn install
