@@ -18,6 +18,9 @@ jobs:
       - name: Get affected apps
         uses: ./.github/actions/affected
         id: get_affected_apps
+      - name: Log sec
+        run: |
+            echo "Test ${{ secrets.TEST }}"
       - name: Configure target SHA
         run: |
             SHA=$(git rev-parse --verify HEAD)
