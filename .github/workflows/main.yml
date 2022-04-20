@@ -60,7 +60,8 @@ jobs:
     uses: ./.github/workflows/api-server.yml
     with:
       event: merge-main
-      npm-token: ${{ secrets.PUSH_NPM }}
+    secrets:
+      token: ${{ secrets.PUSH_NPM }}
     needs: merge-main
     if: contains(needs.merge-main.outputs.affected_apps, 'api-server')
   api-server-pr:

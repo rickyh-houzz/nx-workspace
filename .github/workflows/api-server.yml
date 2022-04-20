@@ -6,9 +6,9 @@ on:
       event:
         required: true
         type: string
-      npm-token:
+    secrets:
+      token:
         required: true
-        type: string
 
 jobs:
   merge-main:
@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 14
       - name: Log sec
-        run: echo "Test ${{ inputs.npm-token }}"
+        run: echo "Test ${{ secrets.token }}"
       - name: Checkout
         uses: actions/checkout@v3
       - name: yarn install
@@ -31,7 +31,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ inputs.npmToken }}
+          NODE_AUTH_TOKEN: ${{ secrets.token }}
   pr:
     if: ${{ inputs.event == 'pr' }}
     runs-on: ubuntu-latest
