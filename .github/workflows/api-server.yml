@@ -11,8 +11,6 @@ jobs:
   merge-main:
     if: ${{ inputs.event == 'merge-main' }}
     runs-on: ubuntu-latest
-    env:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Use Node.js 14
         uses: actions/setup-node@v1
@@ -20,8 +18,6 @@ jobs:
           node-version: 14
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          persist-credentials: false
       - name: yarn install
         run: yarn install
       - name: yarn build
@@ -30,7 +26,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.PUSH_NPM }}
   pr:
     if: ${{ inputs.event == 'pr' }}
     runs-on: ubuntu-latest
