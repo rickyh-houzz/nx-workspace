@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: yarn install
         run: yarn install
       - name: yarn build
