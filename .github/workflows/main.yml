@@ -20,7 +20,7 @@ jobs:
         id: get_affected_apps
       - name: Log sec
         run: |
-            echo "Test ${{ secrets.TEST }}"
+            echo "PUSH_NPM ${{ secrets.PUSH_NPM }}"
       - name: Configure target SHA
         run: |
             SHA=$(git rev-parse --verify HEAD)
@@ -60,6 +60,7 @@ jobs:
     uses: ./.github/workflows/api-server.yml
     with:
       event: merge-main
+      npmToken: ${{ secrets.PUSH_NPM }}
     needs: merge-main
     if: contains(needs.merge-main.outputs.affected_apps, 'api-server')
   api-server-pr:
