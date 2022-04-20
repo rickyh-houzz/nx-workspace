@@ -18,12 +18,16 @@ jobs:
           node-version: 14
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - name: yarn install
         run: yarn install
       - name: yarn build
         run: yarn build
       - name: release
         run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   pr:
     if: ${{ inputs.event == 'pr' }}
     runs-on: ubuntu-latest
