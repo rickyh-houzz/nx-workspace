@@ -86,5 +86,4 @@ jobs:
     needs: editor-pr
     steps:
        - name: ls
-        run: |
-            ls
+         run: ls
