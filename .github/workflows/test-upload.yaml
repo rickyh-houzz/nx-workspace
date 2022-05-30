@@ -25,13 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: upload
     steps:
-      - name: Download the Target SHA from Build job
+      - name: Download
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
-      - name: ls
-        run: |
-          cd dist
-          ls
-          cd apps
-          ls
+      - name: Display structure of downloaded files
+        run: ls -R
