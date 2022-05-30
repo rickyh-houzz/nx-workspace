@@ -1,0 +1,37 @@
+name: upload
+on:
+  pull_request:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: yarn install
+        run: yarn install
+        shell: bash
+      - name: yarn build
+        run: |
+          nx run api-server:build
+          nx run node-server:build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: dist/apps/ # or path/to/artifact
+  get:
+    runs-on: ubuntu-latest
+    needs: upload
+    steps:
+      - name: Download the Target SHA from Build job
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - name: ls
+        run: |
+          cd dist
+          ls
+          cd apps
+          ls
