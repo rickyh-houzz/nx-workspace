@@ -16,7 +16,7 @@ jobs:
       - name: yarn build
         run: |
           npx nx run api-server:build
-          npx nx run node-server:build
+          npx nx run editor:build
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
