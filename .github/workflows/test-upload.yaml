@@ -29,5 +29,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: main.yml
+          workflow_conclusion: success
+          name: TargetSHA
       - name: Display structure of downloaded files
         run: ls -R
+      - name: show target SHA
+        run: |
+          cat target-sha.txt
