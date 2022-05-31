@@ -14,6 +14,8 @@ jobs:
         run: date +%s > report.txt
       - name: commit
         run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Website Services CI"
           git commit -am "Automated report"
           git push
       - name: yarn install
