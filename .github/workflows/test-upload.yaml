@@ -10,6 +10,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
+      - name: create file
+        run: date +%s > report.txt
+      - name: commit
+        run: |
+          git commit -am "Automated report"
+          git push
       - name: yarn install
         run: yarn install
         shell: bash
