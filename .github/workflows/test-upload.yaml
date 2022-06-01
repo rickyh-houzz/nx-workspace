@@ -4,7 +4,10 @@ on:
 
 jobs:
   upload:
+    if: ${{ 0 == 1 }}
     runs-on: ubuntu-latest
+    outputs:
+      manifest_commit_sha: ${{ 123 }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -12,40 +15,12 @@ jobs:
           node-version: '14'
       - name: create file
         run: date +%s > report.txt
-      - name: commit
-        run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Website Services CI"
-          git add .
-          git commit -am "Automated report"
-          git push
-      - name: yarn install
-        run: yarn install
-        shell: bash
-      - name: yarn build
-        run: |
-          npx nx run api-server:build
-          npx nx run editor:build
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: dist/apps/ # or path/to/artifact
   get:
     runs-on: ubuntu-latest
+    if: ${{ 1 == 1 }}
     needs: upload
     steps:
       - name: Download
-        uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: main.yml
-          workflow_conclusion: success
-          name: TargetSHA
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: show target SHA
         run: |
-          cat target-sha.txt
+          echo "${{ needs.upload.manifest_commit_sha || 0 }}"
+
