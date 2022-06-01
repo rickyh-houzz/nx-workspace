@@ -5,13 +5,13 @@ on:
 jobs:
   upload:
     runs-on: ubuntu-latest
-    if: contains('123', '123')
+    if: contains('123', '123') && !contains('123', '1234')
     outputs:
       manifest_commit_sha: ${{ 123 }}
     steps:
       - name: jdjdjd
         run: |
-          exit 1
+          echo "yayayaya"
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
