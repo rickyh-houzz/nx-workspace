@@ -19,7 +19,7 @@ jobs:
         run: date +%s > report.txt
   get:
     runs-on: ubuntu-latest
-    if: ${{ 1 == 1 }}
+    if: contains('123', '123')
     needs: upload
     steps:
       - name: Download
