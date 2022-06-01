@@ -82,3 +82,9 @@ jobs:
       event: pr
     needs: pr
     if: contains(needs.pr.outputs.affected_apps, 'pro-site')
+  post-pr:
+    runs-on: ubuntu-latest
+    needs: editor-pr
+    steps:
+       - name: ls
+         run: ls

@@ -1,0 +1,29 @@
+name: upload
+on:
+  pull_request:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    if: contains('123', '123') && !contains('123', '1234')
+    outputs:
+      manifest_commit_sha: ${{ 123 }}
+    steps:
+      - name: jdjdjd
+        run: |
+          echo "yayayaya"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: create file
+        run: date +%s > report.txt
+  get:
+    runs-on: ubuntu-latest
+    if: contains('123', '123')
+    needs: upload
+    steps:
+      - name: Download
+        run: |
+          echo "${{ needs.upload.manifest_commit_sha || 0 }}"
+
