@@ -10,6 +10,12 @@ on:
 jobs:
   test-branch:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ci: ['lint', 'test', 'build']
     steps:
       - uses: actions/checkout@v2
       - run: echo "test"
+      - name: Conditional
+        if: ${{ matrix.ci == 'build' }}
+        run: echo "build only"
