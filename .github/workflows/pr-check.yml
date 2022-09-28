@@ -1,0 +1,17 @@
+name: pr-check
+
+on:
+  pull_request:
+
+jobs:
+  pr-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ci: ['lint', 'test', 'build']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: echo "${{ matrix.ci }}"
+
