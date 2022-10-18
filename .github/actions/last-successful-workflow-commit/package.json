@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "description": "github action for getting last successful run commit of a workflow",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
-    "build": "npx esbuild ./src/index.ts --bundle --outfile=./dist/index.js --platform=node --target=node16 --minify"
+    "build": "npx esbuild ./src/index.ts --bundle --outfile=./build/index.js --platform=node --target=node16 --minify"
   },
   "author": "Ricky Hsieh",
   "license": "UNLICENSED",

@@ -3,7 +3,7 @@ description: 'Get last successful run commit of a workflow'
 author: 'Ricky Hsieh'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'build/index.js'
 inputs:
   github_token:
     description: 'The GITHUB_TOKEN secret'
