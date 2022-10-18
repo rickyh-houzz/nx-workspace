@@ -15,15 +15,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Get affected apps
-        uses: ./.github/actions/affected
-        id: get_affected_apps
       - name: lswc
         uses: ./.github/actions/last-successful-workflow-commit
         id: lswc
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow_filename: main.yml
+      - name: Get affected apps
+        uses: ./.github/actions/affected
+        id: get_affected_apps
       - run: echo "${{ steps.lswc.outputs.commit_hash }}""
       - name: Log sec
         run: |
