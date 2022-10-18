@@ -1,0 +1,18 @@
+name: 'Last successful workflow commit'
+description: 'Get last successful run commit of a workflow'
+author: 'Ricky Hsieh'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+inputs:
+  github_token:
+    description: 'The GITHUB_TOKEN secret'
+    required: true
+  workflow_filename:
+    description: 'The target workflow filename, e.g. ci.yml'
+    required: true
+  event:
+    description: 'The target workflow runs triggered by the event you specify'
+  branch:
+    description: 'The target workflow runs associated with a branch'
+

@@ -18,6 +18,13 @@ jobs:
       - name: Get affected apps
         uses: ./.github/actions/affected
         id: get_affected_apps
+      - name: lswc
+        uses: ./.github/actions/last-successful-workflow-commit
+        id: lswc
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow_filename: main.yml
+      - run: echo "${{ steps.lswc.outputs.commit_hash }}""
       - name: Log sec
         run: |
             echo "PUSH_NPM ${{ secrets.PUSH_NPM }}"
