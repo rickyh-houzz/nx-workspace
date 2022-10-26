@@ -3,7 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       run_id:
-        description: 'The run id of the deploy workflow(production-build-deploy.yml) you want to revert to'
+        description: |
+          The run id of the deploy workflow(production-build-deploy.yml) you want to revert to
+          Hello
+          world
         required: true
 jobs:
   revert:
