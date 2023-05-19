@@ -2,11 +2,12 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    {
-      "path": "@semantic-release/exec",
-      "cmd": "node release-script.js ${nextRelease.version}",
-      "pkgRoot": "dist/*"
-    },
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "node release-script.js ${nextRelease.version}"
+      }
+    ],
     "@semantic-release/github"
   ]
 }
