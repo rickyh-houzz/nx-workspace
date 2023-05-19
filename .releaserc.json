@@ -4,7 +4,7 @@
     "@semantic-release/release-notes-generator",
     {
       "path": "@semantic-release/exec",
-      "cmd": "node release-script.js",
+      "cmd": "node release-script.js ${nextRelease.version}",
       "pkgRoot": "dist/*"
     },
     "@semantic-release/github"

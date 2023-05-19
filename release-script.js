@@ -6,8 +6,7 @@ const { execSync } = require('child_process');
 // Define the root directory where your packages are located
 const rootDir = 'dist';
 
-// Get the new version from the semantic-release context
-const newVersion = process.env.SEMANTIC_RELEASE_VERSION;
+const newVersion = process.argv[2];
 
 // Get a list of directories under the rootDir
 const directories = fs
