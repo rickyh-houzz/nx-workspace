@@ -5,7 +5,7 @@
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "apps/api-server/dist"
+        "pkgRoot": "dist/*"
       }
     ],
     "@semantic-release/github"

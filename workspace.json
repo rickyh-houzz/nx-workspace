@@ -5,6 +5,7 @@
     "blocks": "libs/blocks",
     "editor": "apps/editor",
     "pro-site": "apps/pro-site",
+    "test-lib": "libs/test-lib",
     "utils": "libs/utils"
   }
 }
