@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "npx nx run api-server:build",
+    "build": "npx nx run api-server:build && npx nx run test-lib:build",
     "test": "nx test"
   },
   "private": true,

@@ -19,8 +19,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Log sec
-        run: echo "Test ${{ secrets.token }}"
       - name: Checkout
         uses: actions/checkout@v3
       - name: yarn install

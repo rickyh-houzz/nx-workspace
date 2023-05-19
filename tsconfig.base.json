@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@nx-workspace/blocks": ["libs/blocks/src/index.ts"],
+      "@nx-workspace/test-lib": ["libs/test-lib/src/index.ts"],
       "@nx-workspace/utils": ["libs/utils/src/index.ts"]
     }
   },
