@@ -1,18 +1,12 @@
 name: 'api-server'
 
 on:
-  workflow_call:
-    inputs:
-      event:
-        required: true
-        type: string
-    secrets:
-      token:
-        required: false
+  push:
+    branches:
+      - master
 
 jobs:
-  merge-main:
-    if: ${{ inputs.event == 'merge-main' }}
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js 14
@@ -30,9 +24,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.token }}
-  pr:
-    if: ${{ inputs.event == 'pr' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: api-server pr
-        run: echo "api-server pr"
