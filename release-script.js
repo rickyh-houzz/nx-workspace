@@ -15,7 +15,7 @@ const directories = fs
   .map((dirent) => dirent.name);
 
 // Iterate over each directory and perform the release steps
-directories.forEach((directory) => {
+directories.forEach((directory, index) => {
   const packageJsonPath = `${rootDir}/${directory}/package.json`;
 
   // Read the package.json file
@@ -26,7 +26,9 @@ directories.forEach((directory) => {
 
   // Write the updated package.json back to the file
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
- 
+
+  execSync(`cat .npmrc`);
+  console.log(`##### ${index}: ${directory} #####`);
   // Perform the release step (e.g., publish to npm)
   execSync(`npm publish ${rootDir}/${directory}`);
 });
