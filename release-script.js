@@ -27,8 +27,8 @@ directories.forEach((directory, index) => {
   // Write the updated package.json back to the file
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
-  execSync(`cat .npmrc`);
+  execSync(`echo "Hello ~~~"`);
   console.log(`##### ${index}: ${directory} #####`);
   // Perform the release step (e.g., publish to npm)
-  execSync(`npm publish ${rootDir}/${directory}`);
+  // execSync(`npm publish ${rootDir}/${directory}`);
 });
