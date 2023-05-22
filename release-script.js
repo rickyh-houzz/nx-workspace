@@ -26,7 +26,7 @@ directories.forEach((directory) => {
 
   // Write the updated package.json back to the file
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  console.log('~~~~packageJson:', packageJson);
+ 
   // Perform the release step (e.g., publish to npm)
   execSync(`npm publish ${rootDir}/${directory}`);
 });
