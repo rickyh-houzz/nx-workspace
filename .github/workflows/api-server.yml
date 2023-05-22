@@ -21,6 +21,7 @@ jobs:
         run: yarn build
       - name: ls
         run: ls -R dist
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.token }}" >> .npmrc
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v3
         env:
