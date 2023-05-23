@@ -26,16 +26,26 @@ directories.forEach((directory, index) => {
   // Update the version to the new version
   packageJson.version = newVersion;
 
-  console.log('#####:', {
-    package: {
-      name: packageJson.name,
-      version: NEXT_VERSION,
-    },
-    git: {
-      tag: repoInfo.tag,
-      hash: repoInfo.sha,
-    },
-  });
+  if (index === 1) {
+    README;
+    fs.writeFileSync(
+      `${rootDir}/${directory}/README.md`,
+      JSON.stringify(
+        {
+          package: {
+            name: packageJson.name,
+            version: NEXT_VERSION,
+          },
+          git: {
+            tag: repoInfo.tag,
+            hash: repoInfo.sha,
+          },
+        },
+        null,
+        2
+      )
+    );
+  }
 
   // Write the updated package.json back to the file
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
