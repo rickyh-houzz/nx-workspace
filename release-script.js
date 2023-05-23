@@ -29,7 +29,7 @@ directories.forEach((directory, index) => {
   console.log('####:', {
     package: {
       name: packageJson.name,
-      version: NEXT_VERSION,
+      version: newVersion,
     },
     git: {
       tag: repoInfo.tag,
