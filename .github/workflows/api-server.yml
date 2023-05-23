@@ -27,3 +27,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Check if it's published
+        id: check_is_publish
+        run: stat DID_PUBLISH_VERSION
+        continue-on-error: true
+      - name: published
+        run: echo "Published!"
