@@ -5,7 +5,7 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "node release-script.js ${nextRelease.version}",
+        "publishCmd": "node ./tools/release-script.js ${nextRelease.version}",
         "successCmd": "echo true > DID_PUBLISH_VERSION"
       }
     ],
